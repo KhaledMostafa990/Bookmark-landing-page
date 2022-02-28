@@ -1,0 +1,35 @@
+$soft-blue: hsl(231, 69%, 60%);
+$soft-red: hsl(0, 94%, 66%);
+$grayish-blue: hsl(229, 8%, 60%);
+$very-dark-blue: hsl(229, 31%, 21%);
+$text-color: #fafafa;
+$default-font-size: 1.8rem;
+$default-font-weight: 400;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #fafafa;
+  user-select: none;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  width: 100%;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+}
+button {
+}
