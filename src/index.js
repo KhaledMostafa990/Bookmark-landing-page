@@ -1,14 +1,16 @@
 // styles
 import "./styles/sass/main.scss";
-
+// Image
+import hero from "./images/illustration-hero.svg";
 // Script
 const header = document.querySelector(".header");
 const logoWrapper = document.querySelector(".header__logo-wrapper");
 const openMenuIcon = document.querySelector(".header__hamburger-icon");
 const closeMenuIcon = document.querySelector(".header__close-icon");
 const nav = document.querySelector(".nav");
+const heroImage = document.querySelector(".hero__image");
 const mobileSize = window.matchMedia("(max-width:767px)");
-
+heroImage.src = hero;
 function addClassName(target, className) {
   target.classList.add(className);
 }

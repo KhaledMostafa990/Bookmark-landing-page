@@ -6,9 +6,26 @@
   color: $text-color;
   font-size: 1.2rem;
   border: 0;
-  width: 10rem;
 
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.1rem;
   border-radius: 0.44rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
+
+  &--outlined {
+    background-color: transparent;
+    outline: 0.22rem solid $text-color;
+  }
+  &__red {
+    background-color: $soft-red;
+    box-shadow: -0.1rem 0.25rem 0.45rem rgba($color: $soft-red, $alpha: 0.5);
+  }
+  &__blue {
+    background-color: $soft-blue;
+    box-shadow: -0rem 0.2rem 0.45rem rgba($color: $soft-blue, $alpha: 0.5);
+  }
+  &__gray {
+    box-shadow: -0rem 0.2rem 0.9rem rgba($color: $grayish-blue, $alpha: 0.5);
+    background-color: rgba($color: $grayish-blue, $alpha: 0.15);
+    color: black;
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "bookmark-landingpage",
   "version": "1.0.0",
-  "description": "Front-end Mentor Challenge, to build out landing page based on design pexel-perfect",
+  "description": "Front-end Challenge, to build out landing page based on design pixel-perfect",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
