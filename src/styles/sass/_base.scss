@@ -31,8 +31,29 @@ body {
 a {
   text-decoration: none;
 }
+@mixin mainGridTemplate {
+  grid-template-columns:
+    [all-start] 9% [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 12em) [col-end]
+    )
+    [ center-end ] 9% [all-end];
+}
+ul {
+  list-style-type: none;
+}
+.u-primary-heading {
+  font-size: clamp(2.7rem, 4vw, 5vw);
+  font-weight: 700;
+  color: $very-dark-blue;
+}
+.u-secondary-heading {
+  font-size: clamp(2.3rem, 2.9vw, 5vw);
+  font-weight: 700;
+  color: $very-dark-blue;
+}
 .u-primary-paragraph {
-  font-size: clamp(1.4rem, 2vw, 1.6vw);
+  font-size: clamp(1.32rem, 2vw, 1.6vw);
   font-weight: 400;
   color: $grayish-blue;
   line-height: 1.55;

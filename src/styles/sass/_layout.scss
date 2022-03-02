@@ -96,12 +96,11 @@
   }
   // List & Items
   &__navlist {
-    list-style-type: none;
     text-align: center;
     li {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
-      border-top: 0.1rem solid rgba($color: $grayish-blue, $alpha: 0.4);
+      border-top: 0.15rem solid rgba($color: $grayish-blue, $alpha: 0.4);
       &:last-child {
         border-bottom: 0.1rem solid rgba($color: $grayish-blue, $alpha: 0.4);
         margin-bottom: 5rem;
@@ -139,17 +138,12 @@
     }
   }
 }
-
 .main {
   display: grid;
-  grid-template-rows: [rows-start]repeat(4, 80vh) [rows-end];
-  grid-template-columns:
-    [all-start] 9% [center-start] repeat(
-      8,
-      [col-start] minmax(min-content, 12em) [col-end]
-    )
-    [ center-end] 9% [all-end];
-  row-gap: 5rem;
+  grid-template-rows: [rows-start] repeat(4, minmax(80vh, max-content)) [rows-end];
+  @include mainGridTemplate;
+
+  row-gap: 10rem;
   overflow: hidden;
 }
 .hero {
@@ -162,9 +156,6 @@
     text-align: center;
   }
   &__heading {
-    font-size: clamp(2.7rem, 4vw, 5vw);
-    font-weight: 700;
-    color: $very-dark-blue;
     margin-bottom: 2.5rem;
     span {
       display: block;
@@ -233,8 +224,165 @@
   }
 }
 .features {
-  // background-color: #a9d9a9;
-  grid-column: all-start/center-end;
+  grid-column: center-start/center-end;
+  display: grid;
+  grid-template-columns: 100%;
+  text-align: center;
+  &__intro {
+    :first-child {
+      margin-bottom: 2rem;
+    }
+  }
+  &__content {
+    &__tabs {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem 0 5rem;
+      &__tab {
+        position: relative;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        color: $grayish-blue;
+        width: 100%;
+        &:first-child::before,
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0; // The difference between First and others
+          left: 0;
+          width: 100%;
+          height: 0.2rem;
+          background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+        }
+        &:first-child::before {
+          top: 0;
+        }
+        &:hover::after {
+          background-color: rgba($color: $grayish-blue, $alpha: 0.8);
+        }
+        &.active {
+          color: $very-dark-blue;
+        }
+        &.active:hover::after {
+          background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+        }
+        &:nth-child(1).active ~ span {
+          transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+        }
+        &:nth-child(2).active ~ span {
+          transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+        }
+        &:nth-child(3).active ~ span {
+          transform: translateY(5rem * 3) translateX(-50%);
+        }
+      }
+      &__indicator {
+        position: absolute;
+        left: 50%;
+        width: 50%;
+        height: 0.5rem;
+        transform: translateX(-50%);
+        background-color: rgba($color: $soft-red, $alpha: 0.9);
+      }
+    }
+    &__values {
+    }
+    &__values-heading {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__image-wrapper {
+    order: 1;
+    position: relative;
+    margin-bottom: 8rem;
+    &::after {
+      content: "";
+      background-color: #5368df;
+      color: #5368df;
+      position: absolute;
+      top: 35%;
+      right: 25%;
+      z-index: -1;
+      height: min(85%, 35rem);
+      width: min(95%, 80rem);
+      border-top-right-radius: 15rem;
+      border-bottom-right-radius: 18rem;
+    }
+  }
+  &__image {
+    height: min(100%, 34.6rem);
+    width: min(100%, 53.6rem);
+  }
+
+  @media screen and (min-width: 767px) {
+    grid-column: all-start/center-end;
+    grid-template-rows: min-content min-content;
+    grid-template-columns: inherit;
+    &__intro {
+      grid-column: col-start 4 / col-end 6;
+    }
+    &__content {
+      grid-column: all-start / -1;
+      display: grid;
+      grid-template-columns: inherit;
+      &__tabs {
+        grid-column: col-start 2/-2;
+        flex-direction: row;
+        &__tab {
+          &:first-child::before {
+            display: none;
+          }
+          &:hover::after {
+            background-color: rgba($color: $grayish-blue, $alpha: 0.8);
+          }
+
+          &.active:hover::after {
+            background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+          }
+          &:nth-child(1).active ~ span {
+            transform: translateY(2.35rem) translateX(0%);
+          }
+          &:nth-child(2).active ~ span {
+            transform: translateY(2.35rem) translateX(100%);
+          }
+          &:nth-child(3).active ~ span {
+            transform: translateY(2.35rem) translateX(200%);
+          }
+        }
+        &__indicator {
+          left: 0%;
+          width: 33%;
+        }
+      }
+      &__values {
+        grid-column: all-start/-1;
+        display: grid;
+        grid-template-columns: inherit;
+        figure:first-child {
+          grid-column: all-start/col-end 5;
+        }
+        &--text {
+          grid-column: col-start 7/-1;
+          text-align: start;
+          position: relative;
+          top: 40%;
+        }
+      }
+      &__values-paragraph {
+        margin-bottom: 2rem;
+      }
+    }
+    &__image-wrapper {
+      top: -60%;
+      margin: 0;
+    }
+    &__image {
+      margin-left: 4rem;
+    }
+  }
 }
 .download {
   background-color: #a9d9a9;

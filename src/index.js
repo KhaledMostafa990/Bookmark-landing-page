@@ -2,15 +2,20 @@
 import "./styles/sass/main.scss";
 // Image
 import hero from "./images/illustration-hero.svg";
+import Image1 from "./images/illustration-features-tab-1.svg";
+import Image2 from "./images/illustration-features-tab-2.svg";
+import Image3 from "./images/illustration-features-tab-3.svg";
+const heroImage = document.querySelector(".hero__image");
+const featuresImage1 = document.querySelector(".features__image");
+
 // Script
 const header = document.querySelector(".header");
 const logoWrapper = document.querySelector(".header__logo-wrapper");
 const openMenuIcon = document.querySelector(".header__hamburger-icon");
 const closeMenuIcon = document.querySelector(".header__close-icon");
 const nav = document.querySelector(".nav");
-const heroImage = document.querySelector(".hero__image");
 const mobileSize = window.matchMedia("(max-width:767px)");
-heroImage.src = hero;
+
 function addClassName(target, className) {
   target.classList.add(className);
 }
@@ -50,3 +55,5 @@ function handleChangeMenu(event) {
 enableMenu(mobileSize);
 mobileSize.addEventListener("change", enableMenu);
 header.addEventListener("click", handleChangeMenu);
+heroImage.src = hero;
+featuresImage1.src = Image1;
