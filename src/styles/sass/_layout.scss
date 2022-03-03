@@ -130,8 +130,11 @@
   // Button
   &__btn {
     width: 100%;
+    outline: 0.22rem solid $text-color;
     background-color: transparent;
     @media screen and (min-width: 767px) {
+      background-color: $soft-red;
+      box-shadow: -0.1rem 0.25rem 0.45rem rgba($color: $soft-red, $alpha: 0.5);
       width: 10rem;
       margin-left: 5rem;
       outline: 0;
@@ -142,7 +145,6 @@
   display: grid;
   grid-template-rows: [rows-start] repeat(4, minmax(80vh, max-content)) [rows-end];
   @include mainGridTemplate;
-
   row-gap: 10rem;
   overflow: hidden;
 }
@@ -167,10 +169,8 @@
   &__cta {
     button:nth-of-type(n + 1) {
       padding: 1.4rem 1rem;
-      font-size: clamp(1.2rem, 1vw, 1.6rem);
-      font-weight: 700;
-      letter-spacing: 0.5px;
       text-transform: unset;
+      font-size: clamp(1.2rem, 1vw, 1.6rem);
       &:first-child {
         margin-right: 1rem;
       }
@@ -234,7 +234,7 @@
     }
   }
   &__content {
-    &__tabs {
+    .tabs-navigation {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -270,53 +270,110 @@
         }
         &:nth-child(1).active ~ span {
           transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+          animation: traversal-1 0.6s ease-in-out 0s 1 normal forwards;
         }
         &:nth-child(2).active ~ span {
           transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+          animation: traversal-2 0.6s ease-in-out 0s 1 normal forwards;
         }
         &:nth-child(3).active ~ span {
           transform: translateY(5rem * 3) translateX(-50%);
+          animation: traversal-3 0.6s ease-in-out 0s 1 normal forwards;
         }
       }
       &__indicator {
         position: absolute;
         left: 50%;
-        width: 50%;
-        height: 0.5rem;
-        transform: translateX(-50%);
+        width: 5%;
+        height: 0.44rem;
+        opacity: 1;
+        transition: all 0.44s;
         background-color: rgba($color: $soft-red, $alpha: 0.9);
       }
+      @keyframes traversal-1 {
+        0% {
+          width: 0%;
+          opacity: 0;
+        }
+        100% {
+          width: 50%;
+          opacity: 1;
+          transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+        }
+      }
+      @keyframes traversal-2 {
+        0% {
+          width: 0%;
+          opacity: 0;
+        }
+        100% {
+          width: 50%;
+          opacity: 1;
+          transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+        }
+      }
+      @keyframes traversal-3 {
+        0% {
+          width: 0%;
+          opacity: 0;
+        }
+        100% {
+          width: 50%;
+          opacity: 1;
+          transform: translateY(5rem * 3) translateX(-50%);
+        }
+      }
     }
-    &__values {
-    }
-    &__values-heading {
-      margin-bottom: 2rem;
+    .tabs-content {
+      &--body {
+        display: none;
+        visibility: hidden;
+        &__image-wrapper {
+          order: 1;
+          position: relative;
+          margin-bottom: 8rem;
+          &::after {
+            content: "";
+            background-color: #5368df;
+            color: #5368df;
+            position: absolute;
+            top: 35%;
+            right: 25%;
+            z-index: -1;
+            height: min(85%, 35rem);
+            width: min(95%, 80rem);
+            border-top-right-radius: 15rem;
+            border-bottom-right-radius: 18rem;
+          }
+        }
+        &:nth-child(1) img {
+          height: min(100%, 34.6rem);
+          width: min(100%, 53.6rem);
+        }
+        &:nth-child(2) img {
+          height: min(100%, 41.6rem);
+          width: min(100%, 47.8rem);
+        }
+        &:nth-child(3) img {
+          height: min(100%, 38rem);
+          width: min(100%, 44rem);
+        }
+        &__text {
+          &--heading {
+            margin-bottom: 2rem;
+          }
+          &--btn {
+            display: none;
+            font-size: clamp(1.2rem, 1vw, 1.6rem);
+          }
+        }
+        &.active {
+          display: block;
+          visibility: visible;
+        }
+      }
     }
   }
-
-  &__image-wrapper {
-    order: 1;
-    position: relative;
-    margin-bottom: 8rem;
-    &::after {
-      content: "";
-      background-color: #5368df;
-      color: #5368df;
-      position: absolute;
-      top: 35%;
-      right: 25%;
-      z-index: -1;
-      height: min(85%, 35rem);
-      width: min(95%, 80rem);
-      border-top-right-radius: 15rem;
-      border-bottom-right-radius: 18rem;
-    }
-  }
-  &__image {
-    height: min(100%, 34.6rem);
-    width: min(100%, 53.6rem);
-  }
-
   @media screen and (min-width: 767px) {
     grid-column: all-start/center-end;
     grid-template-rows: min-content min-content;
@@ -328,7 +385,7 @@
       grid-column: all-start / -1;
       display: grid;
       grid-template-columns: inherit;
-      &__tabs {
+      .tabs-navigation {
         grid-column: col-start 2/-2;
         flex-direction: row;
         &__tab {
@@ -338,18 +395,20 @@
           &:hover::after {
             background-color: rgba($color: $grayish-blue, $alpha: 0.8);
           }
-
           &.active:hover::after {
             background-color: rgba($color: $grayish-blue, $alpha: 0.4);
           }
           &:nth-child(1).active ~ span {
             transform: translateY(2.35rem) translateX(0%);
+            animation: unset;
           }
           &:nth-child(2).active ~ span {
             transform: translateY(2.35rem) translateX(100%);
+            animation: unset;
           }
           &:nth-child(3).active ~ span {
-            transform: translateY(2.35rem) translateX(200%);
+            transform: translateY(2.35rem) translateX(203%);
+            animation: unset;
           }
         }
         &__indicator {
@@ -357,30 +416,38 @@
           width: 33%;
         }
       }
-      &__values {
+      .tabs-content {
         grid-column: all-start/-1;
-        display: grid;
-        grid-template-columns: inherit;
-        figure:first-child {
-          grid-column: all-start/col-end 5;
-        }
-        &--text {
-          grid-column: col-start 7/-1;
-          text-align: start;
-          position: relative;
-          top: 40%;
+        &--body {
+          &:first-child figure {
+            top: -60%;
+          }
+          &.active {
+            @include mainGridTemplate;
+            display: grid;
+          }
+          &__image-wrapper {
+            grid-column: all-start/col-end 5;
+            top: -45%;
+            margin: 0;
+            img {
+              margin-left: 4rem;
+            }
+          }
+          &__text {
+            grid-column: col-start 7/-1;
+            text-align: start;
+            position: relative;
+            top: 40%;
+            &--paragraph {
+              margin-bottom: 2rem;
+            }
+            &--btn {
+              display: inline-block;
+            }
+          }
         }
       }
-      &__values-paragraph {
-        margin-bottom: 2rem;
-      }
-    }
-    &__image-wrapper {
-      top: -60%;
-      margin: 0;
-    }
-    &__image {
-      margin-left: 4rem;
     }
   }
 }

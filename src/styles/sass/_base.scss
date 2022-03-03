@@ -28,9 +28,6 @@ body {
   font-weight: 400;
   width: 100%;
 }
-a {
-  text-decoration: none;
-}
 @mixin mainGridTemplate {
   grid-template-columns:
     [all-start] 9% [center-start] repeat(
@@ -39,9 +36,16 @@ a {
     )
     [ center-end ] 9% [all-end];
 }
+a {
+  text-decoration: none;
+}
 ul {
   list-style-type: none;
 }
+li {
+  cursor: pointer;
+}
+
 .u-primary-heading {
   font-size: clamp(2.7rem, 4vw, 5vw);
   font-weight: 700;
