@@ -30,9 +30,12 @@ body {
   max-width: 100%;
 }
 @mixin mainGridTemplate {
+  // grid-template-columns:
+  //   [all-start] 9vw [center-start] repeat(10, [col-start] (82vw / 10) [col-end])
+  //   [ center-end ] 9vw [all-end];
   grid-template-columns:
-    [all-start] 9vw [center-start] repeat(10, [col-start] (82vw / 10) [col-end])
-    [ center-end ] 9vw [all-end];
+    [all-start] 9% [center-start] repeat(10, [col-start] (82% / 10) [col-end])
+    [ center-end ] 9% [all-end];
 }
 a {
   text-decoration: none;
@@ -45,12 +48,12 @@ li {
 }
 
 .u-primary-heading {
-  font-size: clamp(2.7rem, 4vw, 4vw);
+  font-size: clamp(2.7rem, 3.8vw, 4vw);
   font-weight: 700;
   color: $very-dark-blue;
 }
 .u-secondary-heading {
-  font-size: clamp(2.2rem, 2.9vw, 3.5vw);
+  font-size: clamp(2.1rem, 2.5vw, 3.5vw);
   font-weight: 700;
   color: $very-dark-blue;
 }
@@ -59,9 +62,14 @@ li {
   font-weight: 600;
   color: $very-dark-blue;
 }
+h4 {
+  font-size: clamp(1.4rem, 2vw, 1.6vw);
+  font-weight: 500;
+  color: $very-dark-blue;
+}
 .u-primary-paragraph {
-  font-size: clamp(1.32rem, 2vw, 1.6vw);
-  font-weight: 400;
+  font-size: clamp(1.4rem, 2vw, 1.6vw);
+  font-weight: 300;
   color: $grayish-blue;
   line-height: 1.55;
 }

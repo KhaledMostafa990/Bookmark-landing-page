@@ -141,12 +141,17 @@
 }
 .main {
   display: grid;
-  grid-template-rows: [rows-start] repeat(4, minmax(min-content, 70vh)) [rows-end];
+  grid-template-rows:
+    [first-start] 66.8rem [first-end sections-start] repeat(
+      3,
+      minmax(min-content, 75vh)
+    )
+    [sections-end];
   @include mainGridTemplate;
-  row-gap: 5rem;
   overflow: hidden;
 }
 .hero {
+  grid-row: first-start / first-end;
   grid-column: center-start / center-end;
   display: grid;
   &__content {
@@ -197,12 +202,12 @@
     width: min(100%, 65.7rem);
   }
   @media screen and (min-width: 767px) {
-    grid-column: center-start/all-end; // From 10vw to 100vw
+    grid-column: center-start/ all-end;
     display: grid;
     grid-template-columns: [content-start] 45vw [content-end image-start] 55vw [image-end];
     &__content {
       order: 1;
-      grid-column: [content-start] / [content-end];
+      grid-column: content-start / content-end;
       text-align: start;
       margin-top: 15rem;
     }
@@ -216,7 +221,7 @@
     }
     &__image-wrapper {
       order: 2;
-      grid-column: [image-start] / [image-end];
+      grid-column: image-start / image-end;
       margin-top: 7rem;
     }
   }
@@ -224,10 +229,15 @@
 .features {
   grid-column: center-start/center-end;
   text-align: center;
+  margin-bottom: 10rem;
   &__intro {
     :first-child {
       margin-bottom: 2rem;
     }
+  }
+  &__paragraph {
+    max-width: 75vw;
+    margin: 1.5rem auto;
   }
   &__content {
     .tabs-navigation {
@@ -256,7 +266,7 @@
           top: 0;
         }
         &:hover::after {
-          background-color: rgba($color: $grayish-blue, $alpha: 0.8);
+          background-color: rgba($color: $grayish-blue, $alpha: 0.4);
         }
         &.active {
           color: $very-dark-blue;
@@ -365,6 +375,10 @@
             display: none;
             font-size: clamp(1.2rem, 1vw, 1.6rem);
           }
+          &--paragraph {
+            max-width: 75vw;
+            margin: 1.5rem auto;
+          }
         }
         &.active {
           display: block;
@@ -375,11 +389,11 @@
   }
 
   @media screen and (min-width: 767px) {
-    grid-column: all-start/center-end;
+    grid-column: all-start/all-end;
     display: grid;
     @include mainGridTemplate;
     &__intro {
-      grid-column: col-start 4 / col-start 9;
+      grid-column: col-start 3 / col-start 9;
     }
     &__content {
       grid-column: all-start/center-end;
@@ -387,7 +401,7 @@
       @include mainGridTemplate;
 
       .tabs-navigation {
-        grid-column: col-start 2 / col-end 9;
+        grid-column: col-start 2 / col-end 10;
         flex-direction: row;
         &__tab {
           &:first-child::before {
@@ -418,17 +432,17 @@
         }
       }
       .tabs-content {
-        grid-column: all-start / center-end;
+        grid-column: all-start / -1;
         &--body {
           &.active {
             display: grid;
             @include mainGridTemplate;
           }
           &__image-wrapper {
-            grid-column: all-start/col-start 6;
+            grid-column: all-start/col-end 7;
           }
           &__text {
-            grid-column: col-start 7 / center-end;
+            grid-column: col-start 8 / -1;
             text-align: start;
             position: relative;
             top: 22%;
@@ -447,21 +461,20 @@
 .download {
   grid-column: center-start / center-end;
   display: grid;
-  grid-template-rows: repeat(auto-fill, 1fr);
   @include mainGridTemplate;
   text-align: center;
-  row-gap: 1rem;
   &__intro {
-    grid-column: all-start / col-end 9;
+    grid-column: center-start / center-end;
+    margin-bottom: 5rem;
   }
   &__heading {
   }
   &__paragraph {
-    max-width: 80vw;
+    max-width: 75vw;
     margin: 1.5rem auto;
   }
   &__cards {
-    grid-column: all-start / col-end 9;
+    grid-column: center-start / center-end;
     display: grid;
     grid-auto-rows: 1fr;
     justify-self: center;
@@ -493,18 +506,17 @@
     }
   }
   @media screen and (min-width: 767px) {
+    margin-bottom: 20rem;
     &__paragraph {
       max-width: 47vw;
     }
     &__cards {
-      grid-column: center-start / col-end 8;
-      grid-template-rows: repeat(10, [row-start] 5vh [row-end]);
+      grid-column: col-start 1 / col-end 10;
+      grid-template-rows: repeat(10, [row-start] 4vh [row-end]);
       grid-auto-columns: 1fr;
       column-gap: 4rem;
       row-gap: unset;
       place-self: unset;
-      .card {
-      }
       .card:nth-child(1) {
         grid-row: row-start 1 / -1;
       }
@@ -518,8 +530,71 @@
   }
 }
 .fqa {
-  background-color: #a9d9a9;
   grid-column: center-start/center-end;
+  text-align: center;
+  &__intro {
+  }
+  &__paragraph {
+    max-width: 70vw;
+    margin: 2.5rem auto;
+  }
+  &__questions {
+    text-align: start;
+    .accordion-question {
+      padding: 1rem 1.2rem 0.5rem 0;
+      margin-bottom: 1rem;
+      border-bottom: 0.15rem solid rgba($color: $grayish-blue, $alpha: 0.2);
+      &__summary {
+        color: $very-dark-blue;
+        &::after {
+          position: relative;
+          display: block;
+          content: "";
+          left: 100%;
+          top: -1.5rem;
+          width: 1rem;
+          height: 1rem;
+          border: 0.2rem solid $soft-blue;
+          border-left: 0;
+          border-top: 0;
+          transform: rotate(45deg);
+          transition: all 0.3333s;
+        }
+        &.active ~ .accordion-question__answer {
+          opacity: 1;
+          transform: translateY(0);
+          display: block;
+          visibility: visible;
+        }
+        &.active {
+          &::after {
+            border-color: $soft-red;
+            transform: rotate(225deg);
+          }
+        }
+      }
+      &__answer {
+        padding: 1.2rem 0;
+        display: none;
+        visibility: hidden;
+        transform: translateY(-5rem);
+        opacity: 0.4;
+        transition: all 0.3s;
+      }
+    }
+  }
+  @media screen and (min-width: 767px) {
+    grid-column: col-start 3 / col-end 8;
+    &__paragraph {
+      margin: 3.5rem auto;
+    }
+    .accordion-question {
+      &:first-of-type {
+        padding-top: 1rem;
+        border-top: 0.15rem solid rgba($color: $grayish-blue, $alpha: 0.2);
+      }
+    }
+  }
 }
 .footer {
   background-color: #a9d9a9;
