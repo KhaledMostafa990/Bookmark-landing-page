@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 100vw;
   padding: 3rem 9%;
+  // Active with Mobile size
   &.active {
     height: 100vh;
     max-height: 100vh;
@@ -21,13 +22,6 @@
         rgba($color: $soft-blue, $alpha: 0.77),
         rgba($color: $soft-blue, $alpha: 0.77)
       );
-    @media screen and (min-width: 768px) {
-      &.active {
-        height: 5rem;
-        max-height: 5rem;
-        background: unset;
-      }
-    }
   }
   &__logo-wrapper {
     &.active {
@@ -68,6 +62,12 @@
     &__close-icon {
       display: none;
     }
+    // Remove Active setting with Mobile size
+    &.active {
+      height: 5rem;
+      max-height: 5rem;
+      background: unset;
+    }
   }
 }
 .nav {
@@ -80,7 +80,30 @@
     width: 77%;
     opacity: 0.1;
     display: none;
-    transition: all 5s;
+  }
+  &__navlist {
+    text-align: center;
+    li {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-top: 0.15rem solid rgba($color: $grayish-blue, $alpha: 0.4);
+      &:last-child {
+        border-bottom: 0.1rem solid rgba($color: $grayish-blue, $alpha: 0.4);
+        margin-bottom: 5rem;
+      }
+    }
+  }
+  // Links
+  &__navlink {
+    font-size: $default-font-size;
+    color: $text-color;
+    letter-spacing: 0.2rem;
+  }
+  // Button
+  &__btn {
+    width: 100%;
+    outline: 0.22rem solid $text-color;
+    background-color: transparent;
   }
   // Menu active
   &.active {
@@ -93,20 +116,7 @@
     display: flex;
     align-items: center;
     text-transform: uppercase;
-  }
-  // List & Items
-  &__navlist {
-    text-align: center;
-    li {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-top: 0.15rem solid rgba($color: $grayish-blue, $alpha: 0.4);
-      &:last-child {
-        border-bottom: 0.1rem solid rgba($color: $grayish-blue, $alpha: 0.4);
-        margin-bottom: 5rem;
-      }
-    }
-    @media screen and (min-width: 768px) {
+    &__navlist {
       li:nth-of-type(n + 1) {
         padding: 0;
         margin: 0;
@@ -115,24 +125,12 @@
         margin-left: 2.5rem;
       }
     }
-  }
-  // Links
-  &__navlink {
-    font-size: $default-font-size;
-    color: $text-color;
-    letter-spacing: 0.2rem;
-    @media screen and (min-width: 767px) {
+    &__navlink {
       font-size: 1.2rem;
       font-weight: 700;
       color: $very-dark-blue;
     }
-  }
-  // Button
-  &__btn {
-    width: 100%;
-    outline: 0.22rem solid $text-color;
-    background-color: transparent;
-    @media screen and (min-width: 767px) {
+    &__btn {
       background-color: $soft-red;
       box-shadow: -0.1rem 0.25rem 0.45rem rgba($color: $soft-red, $alpha: 0.5);
       width: 10rem;
@@ -143,22 +141,20 @@
 }
 .main {
   display: grid;
-  grid-template-rows: [rows-start] repeat(4, minmax(80vh, max-content)) [rows-end];
+  grid-template-rows: [rows-start] repeat(4, minmax(min-content, 70vh)) [rows-end];
   @include mainGridTemplate;
-  row-gap: 10rem;
+  row-gap: 5rem;
   overflow: hidden;
 }
 .hero {
-  grid-column: center-start/center-end;
+  grid-column: center-start / center-end;
   display: grid;
-  grid-template-columns: 100%;
-  row-gap: 4rem;
   &__content {
     order: 2;
     text-align: center;
   }
   &__heading {
-    margin-bottom: 2.5rem;
+    margin: 2.5rem 0;
     span {
       display: block;
     }
@@ -170,7 +166,7 @@
     button:nth-of-type(n + 1) {
       padding: 1.4rem 1rem;
       text-transform: unset;
-      font-size: clamp(1.2rem, 1vw, 1.6rem);
+      font-size: clamp(1.1rem, 1vw, 1.8rem);
       &:first-child {
         margin-right: 1rem;
       }
@@ -201,12 +197,13 @@
     width: min(100%, 65.7rem);
   }
   @media screen and (min-width: 767px) {
-    grid-column: center-start/all-end;
-    grid-template-columns: [hero-start]45% [hero-center] 1fr [hero-end ];
-    column-gap: 7rem;
+    grid-column: center-start/all-end; // From 10vw to 100vw
+    display: grid;
+    grid-template-columns: [content-start] 45vw [content-end image-start] 55vw [image-end];
     &__content {
-      text-align: start;
       order: 1;
+      grid-column: [content-start] / [content-end];
+      text-align: start;
       margin-top: 15rem;
     }
     &__cta {
@@ -219,14 +216,13 @@
     }
     &__image-wrapper {
       order: 2;
+      grid-column: [image-start] / [image-end];
       margin-top: 7rem;
     }
   }
 }
 .features {
   grid-column: center-start/center-end;
-  display: grid;
-  grid-template-columns: 100%;
   text-align: center;
   &__intro {
     :first-child {
@@ -326,10 +322,10 @@
     }
     .tabs-content {
       &--body {
+        // Not Active
         display: none;
         visibility: hidden;
         &__image-wrapper {
-          order: 1;
           position: relative;
           margin-bottom: 8rem;
           &::after {
@@ -337,25 +333,28 @@
             background-color: #5368df;
             color: #5368df;
             position: absolute;
-            top: 35%;
+            top: 33%;
             right: 25%;
             z-index: -1;
-            height: min(85%, 35rem);
+            height: min(80%, 30rem);
             width: min(95%, 80rem);
             border-top-right-radius: 15rem;
             border-bottom-right-radius: 18rem;
           }
         }
+        img {
+          height: clamp(34.1rem, 37rem, 41rem);
+        }
         &:nth-child(1) img {
-          height: min(100%, 34.6rem);
+          // height: min(100%, 34.6rem);
           width: min(100%, 53.6rem);
         }
         &:nth-child(2) img {
-          height: min(100%, 41.6rem);
+          // height: min(100%, 41.6rem);
           width: min(100%, 47.8rem);
         }
         &:nth-child(3) img {
-          height: min(100%, 38rem);
+          // height: min(100%, 38rem);
           width: min(100%, 44rem);
         }
         &__text {
@@ -374,19 +373,21 @@
       }
     }
   }
+
   @media screen and (min-width: 767px) {
     grid-column: all-start/center-end;
-    grid-template-rows: min-content min-content;
-    grid-template-columns: inherit;
+    display: grid;
+    @include mainGridTemplate;
     &__intro {
-      grid-column: col-start 4 / col-end 6;
+      grid-column: col-start 4 / col-start 9;
     }
     &__content {
-      grid-column: all-start / -1;
+      grid-column: all-start/center-end;
       display: grid;
-      grid-template-columns: inherit;
+      @include mainGridTemplate;
+
       .tabs-navigation {
-        grid-column: col-start 2/-2;
+        grid-column: col-start 2 / col-end 9;
         flex-direction: row;
         &__tab {
           &:first-child::before {
@@ -417,28 +418,20 @@
         }
       }
       .tabs-content {
-        grid-column: all-start/-1;
+        grid-column: all-start / center-end;
         &--body {
-          &:first-child figure {
-            top: -60%;
-          }
           &.active {
-            @include mainGridTemplate;
             display: grid;
+            @include mainGridTemplate;
           }
           &__image-wrapper {
-            grid-column: all-start/col-end 5;
-            top: -45%;
-            margin: 0;
-            img {
-              margin-left: 4rem;
-            }
+            grid-column: all-start/col-start 6;
           }
           &__text {
-            grid-column: col-start 7/-1;
+            grid-column: col-start 7 / center-end;
             text-align: start;
             position: relative;
-            top: 40%;
+            top: 22%;
             &--paragraph {
               margin-bottom: 2rem;
             }
@@ -452,8 +445,77 @@
   }
 }
 .download {
-  background-color: #a9d9a9;
-  grid-column: center-start/center-end;
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  @include mainGridTemplate;
+  text-align: center;
+  row-gap: 1rem;
+  &__intro {
+    grid-column: all-start / col-end 9;
+  }
+  &__heading {
+  }
+  &__paragraph {
+    max-width: 80vw;
+    margin: 1.5rem auto;
+  }
+  &__cards {
+    grid-column: all-start / col-end 9;
+    display: grid;
+    grid-auto-rows: 1fr;
+    justify-self: center;
+    align-self: center;
+    row-gap: 3rem;
+    .card {
+      // width: max(, 22.5vw, 25vw);
+      max-width: 27rem;
+      height: 32rem;
+      display: grid;
+      grid-template-rows: repeat(auto-fill, 1fr);
+      justify-items: center;
+      place-content: space-around;
+      padding: 2rem 0.1rem;
+      border-radius: 0.47rem;
+      box-shadow: 0.25rem 1.2rem 2.5rem rgba($color: $grayish-blue, $alpha: 0.1),
+        -0.3rem 1.2rem 1rem rgba($color: $very-dark-blue, $alpha: 0.1);
+      background-color: rgba($color: #fffc, $alpha: 0.8);
+      &__version {
+        font-size: clamp(1.2rem, 1.2vw, 2vw);
+        color: rgba($color: $grayish-blue, $alpha: 0.8);
+      }
+      &__dots-img {
+        max-width: 100%;
+      }
+      &__btn {
+        text-transform: unset;
+      }
+    }
+  }
+  @media screen and (min-width: 767px) {
+    &__paragraph {
+      max-width: 47vw;
+    }
+    &__cards {
+      grid-column: center-start / col-end 8;
+      grid-template-rows: repeat(10, [row-start] 5vh [row-end]);
+      grid-auto-columns: 1fr;
+      column-gap: 4rem;
+      row-gap: unset;
+      place-self: unset;
+      .card {
+      }
+      .card:nth-child(1) {
+        grid-row: row-start 1 / -1;
+      }
+      .card:nth-child(2) {
+        grid-row: row-start 2 /-1;
+      }
+      .card:nth-child(3) {
+        grid-row: row-start 3/-1;
+      }
+    }
+  }
 }
 .fqa {
   background-color: #a9d9a9;
@@ -461,4 +523,5 @@
 }
 .footer {
   background-color: #a9d9a9;
+  list-style-type: circle;
 }

@@ -1,6 +1,7 @@
 .btn {
   cursor: pointer;
   position: relative;
+  display: block;
   text-transform: uppercase;
   background: none;
   color: $text-color;
@@ -11,6 +12,7 @@
   letter-spacing: 0.1rem;
   border-radius: 0.44rem;
   padding: 1rem 1.5rem;
+  min-width: 8.8rem;
 
   &__blue {
     background-color: $soft-blue;
