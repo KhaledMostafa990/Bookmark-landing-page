@@ -1,0 +1,28 @@
+.features {
+  grid-column: center-start/center-end;
+  text-align: center;
+  margin-bottom: 10rem;
+  &__intro {
+    :first-child {
+      margin-bottom: 2rem;
+    }
+  }
+  &__paragraph {
+    margin: 1.5rem auto;
+  }
+  &__content {
+  }
+  @media screen and (min-width: 767px) {
+    grid-column: all-start/all-end;
+    display: grid;
+    @include mainGridTemplate;
+    &__intro {
+      grid-column: col-start 3 / col-start 9;
+    }
+    &__content {
+      grid-column: all-start/center-end;
+      display: grid;
+      @include mainGridTemplate;
+    }
+  }
+}

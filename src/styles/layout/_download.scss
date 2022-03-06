@@ -1,0 +1,71 @@
+.download {
+  grid-column: center-start / center-end;
+  display: grid;
+  @include mainGridTemplate;
+  text-align: center;
+  &__intro {
+    grid-column: center-start / center-end;
+    margin-bottom: 5rem;
+  }
+  &__heading {
+  }
+  &__paragraph {
+    max-width: 75vw;
+    margin: 1.5rem auto;
+  }
+  &__cards {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-auto-rows: 1fr;
+    justify-self: center;
+    align-self: center;
+    row-gap: 3rem;
+    .card {
+      // width: max(, 22.5vw, 25vw);
+      max-width: 27rem;
+      height: 32rem;
+      display: grid;
+      grid-template-rows: repeat(auto-fill, 1fr);
+      justify-items: center;
+      place-content: space-around;
+      padding: 2rem 0.1rem;
+      border-radius: 0.47rem;
+      box-shadow: 0.25rem 1.2rem 2.5rem rgba($color: $grayish-blue, $alpha: 0.1),
+        -0.3rem 1.2rem 1rem rgba($color: $very-dark-blue, $alpha: 0.1);
+      background-color: rgba($color: #fffc, $alpha: 0.8);
+      &__version {
+        font-size: clamp(1.2rem, 1.2vw, 2vw);
+        color: rgba($color: $grayish-blue, $alpha: 0.8);
+      }
+      &__dots-img {
+        max-width: 100%;
+      }
+      &__btn {
+        text-transform: unset;
+      }
+    }
+  }
+  @media screen and (min-width: 767px) {
+    margin-bottom: 20rem;
+    &__paragraph {
+      max-width: 47vw;
+    }
+    &__cards {
+      grid-column: col-start 1 / col-end 10;
+      grid-template-rows: repeat(10, [row-start] 4vh [row-end]);
+      grid-auto-columns: 1fr;
+      column-gap: 4rem;
+      row-gap: unset;
+      place-self: unset;
+      .card:nth-child(1) {
+        grid-row: row-start 1 / -1;
+      }
+      .card:nth-child(2) {
+        grid-row: row-start 2 /-1;
+      }
+      .card:nth-child(3) {
+        grid-row: row-start 3/-1;
+      }
+    }
+  }
+}

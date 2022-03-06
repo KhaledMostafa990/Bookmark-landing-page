@@ -1,0 +1,203 @@
+.tabs-navigation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0 5rem;
+  &__tab {
+    position: relative;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: $grayish-blue;
+    width: 100%;
+    &:first-child::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0; // The difference between First and others
+      left: 0;
+      width: 100%;
+      height: 0.2rem;
+      background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+    }
+    &:first-child::before {
+      top: 0;
+    }
+    &:hover::after {
+      background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+    }
+    &.active {
+      color: $very-dark-blue;
+    }
+    &.active:hover::after {
+      background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+    }
+    &:nth-child(1).active ~ span {
+      transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+      animation: traversal-1 0.6s ease-in-out 0s 1 normal forwards;
+    }
+    &:nth-child(2).active ~ span {
+      transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+      animation: traversal-2 0.6s ease-in-out 0s 1 normal forwards;
+    }
+    &:nth-child(3).active ~ span {
+      transform: translateY(5rem * 3) translateX(-50%);
+      animation: traversal-3 0.6s ease-in-out 0s 1 normal forwards;
+    }
+  }
+  &__indicator {
+    position: absolute;
+    left: 50%;
+    width: 5%;
+    height: 0.44rem;
+    opacity: 1;
+    transition: all 0.44s;
+    background-color: rgba($color: $soft-red, $alpha: 0.9);
+  }
+  @keyframes traversal-1 {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    100% {
+      width: 50%;
+      opacity: 1;
+      transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+    }
+  }
+  @keyframes traversal-2 {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    100% {
+      width: 50%;
+      opacity: 1;
+      transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+    }
+  }
+  @keyframes traversal-3 {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    100% {
+      width: 50%;
+      opacity: 1;
+      transform: translateY(5rem * 3) translateX(-50%);
+    }
+  }
+}
+.tabs-content {
+  &--body {
+    // Not Active
+    display: none;
+    visibility: hidden;
+    &__image-wrapper {
+      position: relative;
+      margin-bottom: 8rem;
+      &::after {
+        content: "";
+        background-color: #5368df;
+        color: #5368df;
+        position: absolute;
+        top: 33%;
+        right: 25%;
+        z-index: -1;
+        height: min(80%, 30rem);
+        width: min(95%, 80rem);
+        border-top-right-radius: 15rem;
+        border-bottom-right-radius: 18rem;
+      }
+    }
+    img {
+      height: clamp(34.1rem, 37rem, 41rem);
+    }
+    &:nth-child(1) img {
+      // height: min(100%, 34.6rem);
+      width: min(100%, 53.6rem);
+    }
+    &:nth-child(2) img {
+      // height: min(100%, 41.6rem);
+      width: min(100%, 47.8rem);
+    }
+    &:nth-child(3) img {
+      // height: min(100%, 38rem);
+      width: min(100%, 44rem);
+    }
+    &__text {
+      &--heading {
+        margin-bottom: 2rem;
+      }
+      &--btn {
+        display: none;
+        font-size: clamp(1.2rem, 1vw, 1.6rem);
+      }
+      &--paragraph {
+        max-width: 75vw;
+        margin: 1.5rem auto;
+      }
+    }
+    &.active {
+      display: block;
+      visibility: visible;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .tabs-navigation {
+    grid-column: col-start 2 / col-end 10;
+    flex-direction: row;
+    &__tab {
+      &:first-child::before {
+        display: none;
+      }
+      &:hover::after {
+        background-color: rgba($color: $grayish-blue, $alpha: 0.8);
+      }
+      &.active:hover::after {
+        background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+      }
+      &:nth-child(1).active ~ span {
+        transform: translateY(2.35rem) translateX(0%);
+        animation: unset;
+      }
+      &:nth-child(2).active ~ span {
+        transform: translateY(2.35rem) translateX(100%);
+        animation: unset;
+      }
+      &:nth-child(3).active ~ span {
+        transform: translateY(2.35rem) translateX(203%);
+        animation: unset;
+      }
+    }
+    &__indicator {
+      left: 0%;
+      width: 33%;
+    }
+  }
+  .tabs-content {
+    grid-column: all-start / -1;
+    &--body {
+      &.active {
+        display: grid;
+        @include mainGridTemplate;
+      }
+      &__image-wrapper {
+        grid-column: all-start/col-end 7;
+      }
+      &__text {
+        grid-column: col-start 8 / -1;
+        text-align: start;
+        position: relative;
+        top: 22%;
+        &--paragraph {
+          margin-bottom: 2rem;
+        }
+        &--btn {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

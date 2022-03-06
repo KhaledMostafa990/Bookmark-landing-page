@@ -1,5 +1,6 @@
 import { addClassName, removeClassName } from "./helpers";
 const mobileSize = window.matchMedia("(max-width:767px)");
+const main = document.querySelector(".main");
 const header = document.querySelector(".header");
 const logoWrapper = document.querySelector(".header__logo-wrapper");
 const openMenuIcon = document.querySelector(".header__hamburger-icon");
@@ -20,10 +21,10 @@ function handleChangeMenu(event) {
   const close = event.target.closest(".header__close-icon");
   if (open) {
     removeClassName([openMenuIcon], "active");
-    addClassName([closeMenuIcon, header, logoWrapper, nav], "active");
+    addClassName([closeMenuIcon, header, logoWrapper, nav, main], "active");
   } else if (close) {
     addClassName([openMenuIcon], "active");
-    removeClassName([closeMenuIcon, header, logoWrapper, nav], "active");
+    removeClassName([closeMenuIcon, header, logoWrapper, nav, main], "active");
   }
 }
 

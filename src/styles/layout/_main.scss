@@ -1,0 +1,16 @@
+.main {
+  display: grid;
+  grid-template-rows:
+    [first-start] 66.8rem [first-end sections-start] repeat(
+      3,
+      minmax(min-content, 75vh)
+    )
+    [sections-end];
+  @include mainGridTemplate;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5rem;
+  &.active {
+    top: 9rem;
+  }
+}
