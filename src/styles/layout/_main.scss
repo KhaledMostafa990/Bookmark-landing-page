@@ -8,9 +8,9 @@
     [sections-end];
   @include mainGridTemplate;
   overflow: hidden;
-  position: relative;
-  margin-bottom: 5rem;
+  row-gap: 10rem;
   &.active {
+    position: relative;
     top: 9rem;
   }
 }

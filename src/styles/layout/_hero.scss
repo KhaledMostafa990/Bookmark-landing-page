@@ -16,10 +16,8 @@
     margin-bottom: 3rem;
   }
   &__cta {
-    button:nth-of-type(n + 1) {
-      padding: 1.4rem 1rem;
+    a:nth-of-type(n + 1) {
       text-transform: unset;
-      font-size: clamp(1.1rem, 1vw, 1.8rem);
       &:first-child {
         margin-right: 1rem;
       }

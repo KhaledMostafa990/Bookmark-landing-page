@@ -11,6 +11,15 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
+    <!-- ========  LOADER   ======== -->
+    <div class="loader">
+      <div class="loader__dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <!-- ========  LOADER END   ======== -->
     <!-- ======== ======== HEADER  ======== ======== -->
     <header id="header" class="header">
       <figure class="header__logo-wrapper">
@@ -37,13 +46,13 @@
             <a href="#features" class="nav__navlink">features</a>
           </li>
           <li class="nav__navitem">
-            <a href="#pricing" class="nav__navlink">pricing</a>
+            <a href="#download" class="nav__navlink">pricing</a>
           </li>
           <li class="nav__navitem">
             <a href="#footer" class="nav__navlink">contact</a>
           </li>
         </ul>
-        <button class="nav__btn btn btn__red btn--outlined">login</button>
+        <a class="nav__btn btn" href="#">login</a>
       </nav>
       <i class="header__close-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15">
@@ -79,8 +88,8 @@
             free.
           </p>
           <div class="hero__cta">
-            <button class="btn btn__blue">Get it on Chrome</button>
-            <button class="btn btn__gray">Get it on Firefox</button>
+            <a class="btn btn__blue" href="#">Get it on Chrome</a>
+            <a class="btn btn__gray" href="#">Get it on Firefox</a>
           </div>
         </div>
         <figure class="hero__image-wrapper">
@@ -209,7 +218,7 @@
             <h3 class="card__name u-tertiary-heading">Add to Chrome</h3>
             <span class="card__version">Minimum version 62</span>
             <img class="card__dots-img" src="" alt="" />
-            <a class="card__btn btn btn__blue" href=""
+            <a class="card__btn btn btn__blue" href="#"
               >Add & Install Extension</a
             >
           </div>
@@ -218,7 +227,7 @@
             <h3 class="card__name u-tertiary-heading">Add to Firefox</h3>
             <span class="card__version">Minimum version 55</span>
             <img class="card__dots-img" src="" alt="" />
-            <a class="card__btn btn btn__blue" href=""
+            <a class="card__btn btn btn__blue" href="#"
               >Add & Install Extension</a
             >
           </div>
@@ -227,7 +236,7 @@
             <h3 class="card__name u-tertiary-heading">Add to Opera</h3>
             <span class="card__version">Minimum version 46</span>
             <img class="card__dots-img" src="" alt="" />
-            <a class="card__btn btn btn__blue" href=""
+            <a class="card__btn btn btn__blue" href="#"
               >Add & Install Extension</a
             >
           </div>
@@ -300,15 +309,14 @@
           <h5>35,000+ already joined</h5>
         </div>
 
-        <form class="footer__contact-us--form" action="sumbit">
+        <form id="form" class="footer__contact-us--form">
           <div class="form-control">
             <input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="Enter your email address"
             />
-            <!-- <label for="email">email</label> -->
             <small class="input-msg">Whoops, make sure it's an email</small>
           </div>
 
@@ -344,7 +352,7 @@
               <a href="#features" class="nav-bottom__navlink">features</a>
             </li>
             <li class="nav-bottom__navitem">
-              <a href="#pricing" class="nav-bottom__navlink">pricing</a>
+              <a href="#download" class="nav-bottom__navlink">pricing</a>
             </li>
             <li class="nav-bottom__navitem">
               <a href="#footer" class="nav-bottom__navlink">contact</a>

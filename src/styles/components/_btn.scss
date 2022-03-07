@@ -1,28 +1,52 @@
 .btn {
   cursor: pointer;
+  border: 0;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
   background: none;
   color: $text-color;
-  font-size: 1.2rem;
+
+  font-size: clamp(0.98rem, 1.1vw, 1.8rem);
   font-weight: 600;
-  border: 0;
-  outline: 0;
   letter-spacing: 0.1rem;
   border-radius: 0.44rem;
   padding: 1rem 1.5rem;
   min-width: 8.8rem;
+  transition: all 0.1s ease-in;
+  &:active {
+    animation: none;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.2rem 0.4rem rgba($text-color, 0.7);
+  }
+  @media screen and (min-width: 768px) {
+    padding: 1.45rem 2rem;
+  }
   &__red {
     background-color: $soft-red;
+    &:hover {
+      background-color: $text-color;
+      outline: 0.15rem solid $soft-red;
+      color: $soft-red;
+    }
   }
   &__blue {
     background-color: $soft-blue;
     box-shadow: -0rem 0.2rem 0.45rem rgba($color: $soft-blue, $alpha: 0.5);
+    &:hover {
+      background-color: transparent;
+      outline: 0.15rem solid $soft-blue;
+      color: $soft-blue;
+    }
   }
   &__gray {
     box-shadow: -0rem 0.2rem 0.9rem rgba($color: $grayish-blue, $alpha: 0.5);
     background-color: rgba($color: $grayish-blue, $alpha: 0.15);
     color: black;
+    &:hover {
+      background-color: transparent;
+      outline: 0.15rem solid $grayish-blue;
+      color: $grayish-blue;
+    }
   }
 }

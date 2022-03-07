@@ -28,6 +28,7 @@ body {
   font-weight: 400;
   width: 100%;
   max-width: 100%;
+  position: relative;
 }
 @mixin mainGridTemplate {
   // grid-template-columns:

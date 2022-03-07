@@ -19,10 +19,14 @@ function enableMenu(mobileSize) {
 function handleChangeMenu(event) {
   const open = event.target.closest(".header__hamburger-icon");
   const close = event.target.closest(".header__close-icon");
+  const link = event.target.closest(".nav__navlink");
   if (open) {
     removeClassName([openMenuIcon], "active");
     addClassName([closeMenuIcon, header, logoWrapper, nav, main], "active");
   } else if (close) {
+    addClassName([openMenuIcon], "active");
+    removeClassName([closeMenuIcon, header, logoWrapper, nav, main], "active");
+  } else if (link && mobileSize.matches) {
     addClassName([openMenuIcon], "active");
     removeClassName([closeMenuIcon, header, logoWrapper, nav, main], "active");
   }
@@ -33,4 +37,4 @@ function hadnleHeaderchanges() {
   mobileSize.addEventListener("change", enableMenu);
   header.addEventListener("click", handleChangeMenu);
 }
-export { hadnleHeaderchanges };
+export default hadnleHeaderchanges;

@@ -22,8 +22,8 @@ function hadnleChangeTab(event) {
     addClassName([targetContent], "active");
   }
 }
-function handleFeatureSectionChanges() {
+function handleFeatureSection() {
   featuresContentTabs.addEventListener("click", hadnleChangeTab);
 }
 
-export default handleFeatureSectionChanges;
+export default handleFeatureSection;

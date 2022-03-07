@@ -10,6 +10,7 @@
     padding-bottom: 1.5rem;
     color: $grayish-blue;
     width: 100%;
+    transition: all 0.15s;
     &:first-child::before,
     &::after {
       content: "";
@@ -23,8 +24,11 @@
     &:first-child::before {
       top: 0;
     }
-    &:hover::after {
-      background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+    &:hover {
+      color: rgba($soft-red, 0.85);
+      &::after {
+        background-color: rgba($color: $grayish-blue, $alpha: 0.4);
+      }
     }
     &.active {
       color: $very-dark-blue;

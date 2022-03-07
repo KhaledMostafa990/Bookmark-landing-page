@@ -1,9 +1,10 @@
-@import "sass/base";
+@import "base/base";
+@import "base/animations";
 
 @import "components/btn";
-@import "components/header";
 @import "components/tabs";
 
+@import "layout/header";
 @import "layout/main";
 @import "layout/hero";
 @import "layout/features";

@@ -1,19 +1,22 @@
 import { addClassName, removeClassName } from "./helpers";
-const form = document.querySelector(".footer__contact-us--form");
+const form = document.getElementById("form");
 const email = document.getElementById("email");
 let formControl = document.querySelector(".form-control");
-// let message = document.querySelector(".input-msg");
-const regx =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-function handleEmailInput(params) {
+let message = document.querySelector(".input-msg");
+const emailRgxP = /^[a-z-._0-9]+@[a-z0-9]+\.[a-z]{2,5}$/;
+function handleEmailInput() {
   form.addEventListener("submit", (e) => {
-    e.preventDefault("");
-    removeClassName([formControl], "valid");
-    removeClassName([formControl], "invalid");
-    if (!regx.test(email.value)) {
-      addClassName([formControl], "invalid");
+    e.preventDefault();
+
+    if (!emailRgxP.test(email.value)) {
+      formControl.className = "form-control  invalid";
+      message.textContent = "Whoops, make sure it's an email";
+    } else {
+      formControl.className = "form-control valid";
+      message.textContent = "Thanks you";
+      console.log("sumitted", email.value);
+      email.value = "";
     }
-    console.log("sumitted", email.value);
   });
 }
 export default handleEmailInput;

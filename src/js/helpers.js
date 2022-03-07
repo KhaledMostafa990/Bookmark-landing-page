@@ -4,5 +4,8 @@ function addClassName([...target], className) {
 function removeClassName([...target], className) {
   target.forEach((t) => t.classList.remove(className));
 }
+function slideIn(name, duration) {
+  return `${name} ${duration} ease-out 1 forwards`;
+}
 
-export { addClassName, removeClassName };
+export { addClassName, removeClassName, slideIn };

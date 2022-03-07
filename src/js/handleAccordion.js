@@ -13,4 +13,4 @@ function handleAccordionsChnges() {
   accordions.addEventListener("click", hadnleOpenAccordion);
 }
 
-export { handleAccordionsChnges };
+export default handleAccordionsChnges;
