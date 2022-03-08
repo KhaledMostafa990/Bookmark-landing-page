@@ -46,17 +46,27 @@
     }
   }
   @media screen and (min-width: 767px) {
-    margin-bottom: 20rem;
+    margin-bottom: 10rem;
     &__paragraph {
       max-width: 47vw;
     }
     &__cards {
-      grid-column: col-start 1 / col-end 10;
+      grid-column: all-start / all-end;
       grid-template-rows: repeat(10, [row-start] 4vh [row-end]);
       grid-auto-columns: 1fr;
-      column-gap: 4rem;
+      column-gap: 2.25rem;
       row-gap: unset;
       place-self: unset;
+      .card {
+        &__icon {
+          width: clamp(5rem, 45%, 10rem);
+        }
+        &__btn {
+          max-width: 90%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
       .card:nth-child(1) {
         grid-row: row-start 1 / -1;
       }
@@ -66,6 +76,17 @@
       .card:nth-child(3) {
         grid-row: row-start 3/-1;
       }
+    }
+  }
+  @media screen and (min-width: 992px) {
+    &__cards {
+      grid-column: center-start / center-end;
+      column-gap: 3.25rem;
+    }
+    &__btn {
+      max-width: 90%;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 }

@@ -31,9 +31,6 @@ body {
   position: relative;
 }
 @mixin mainGridTemplate {
-  // grid-template-columns:
-  //   [all-start] 9vw [center-start] repeat(10, [col-start] (82vw / 10) [col-end])
-  //   [ center-end ] 9vw [all-end];
   grid-template-columns:
     [all-start] 9% [center-start] repeat(10, [col-start] (82% / 10) [col-end])
     [ center-end ] 9% [all-end];
@@ -69,7 +66,7 @@ h4 {
   color: $very-dark-blue;
 }
 .u-primary-paragraph {
-  font-size: clamp(1.4rem, 2vw, 1.6vw);
+  font-size: clamp(1.4rem, 1.8vw, 2vw);
   font-weight: 300;
   color: $grayish-blue;
   line-height: 1.55;

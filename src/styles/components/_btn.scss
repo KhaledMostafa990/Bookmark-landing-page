@@ -19,9 +19,7 @@
     transform: translateY(-0.1rem);
     box-shadow: 0 0.2rem 0.4rem rgba($text-color, 0.7);
   }
-  @media screen and (min-width: 768px) {
-    padding: 1.45rem 2rem;
-  }
+
   &__red {
     background-color: $soft-red;
     &:hover {
@@ -48,5 +46,9 @@
       outline: 0.15rem solid $grayish-blue;
       color: $grayish-blue;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 1.45rem 2rem;
   }
 }

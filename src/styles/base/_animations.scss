@@ -1,3 +1,118 @@
+// For menu background
+@keyframes fade-menu-bg {
+  0% {
+    opacity: 0;
+    border-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transform: scaleY(1) scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    border-bottom-right-radius: 0%;
+    transform: scaleY(25) scaleX(22.5);
+  }
+}
+@keyframes fade-menu-bg-reverse {
+  0% {
+    opacity: 1;
+    border-bottom-right-radius: 0%;
+    transform: scaleY(25) scaleX(22.5);
+  }
+  100% {
+    opacity: 0;
+    border-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transform: scaleY(1) scaleX(1);
+  }
+}
+// For Loader on page loading
+.loader {
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    to left bottom,
+    rgba($color: $very-dark-blue, $alpha: 1),
+    rgba($color: $very-dark-blue, $alpha: 1)
+  );
+  &__dots {
+    display: flex;
+    height: 2.5rem;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(3, 10px);
+    .dot {
+      animation: scaling-dots 1s infinite ease backwards;
+      background: $text-color;
+      border-radius: 100%;
+      height: 2rem;
+      width: 2rem;
+    }
+    .dot:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .dot:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+    .dot:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+    .dot:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+  }
+}
+@keyframes scaling-dots {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  40%,
+  60% {
+    transform: scale(1);
+  }
+}
+// For Tab indicator
+@keyframes traversal-1 {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 50%;
+    opacity: 1;
+    transform: translateY(5rem * 1 - 0.5rem) translateX(-50%);
+  }
+}
+@keyframes traversal-2 {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 50%;
+    opacity: 1;
+    transform: translateY(5rem * 2 - 0.64rem) translateX(-50%);
+  }
+}
+@keyframes traversal-3 {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 50%;
+    opacity: 1;
+    transform: translateY(5rem * 3 - 0.75rem) translateX(-50%);
+  }
+}
+// Slide Up/Down lLeft/Right (used with Js)
 .slide-in-down {
   animation: slide-in-down 0.65s ease-in-out forwards;
 }
@@ -49,84 +164,5 @@
   100% {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-@keyframes fade-menu-bg {
-  0% {
-    opacity: 0;
-    border-radius: 100%;
-    border-bottom-right-radius: 100%;
-    transform: scaleY(1) scaleX(1);
-  }
-  100% {
-    opacity: 1;
-    border-bottom-right-radius: 0%;
-    transform: scaleY(25) scaleX(22.5);
-  }
-}
-@keyframes fade-menu-bg-reverse {
-  0% {
-    opacity: 1;
-    border-bottom-right-radius: 0%;
-    transform: scaleY(25) scaleX(22.5);
-  }
-  100% {
-    opacity: 0;
-    border-radius: 100%;
-    border-bottom-right-radius: 100%;
-    transform: scaleY(1) scaleX(1);
-  }
-}
-
-.loader {
-  position: fixed;
-  z-index: 9999;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(
-    to left bottom,
-    rgba($color: $very-dark-blue, $alpha: 1),
-    rgba($color: $very-dark-blue, $alpha: 1)
-  );
-  &__dots {
-    display: flex;
-    height: 2.5rem;
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(3, 10px);
-    .dot {
-      animation: scaling-dots 1s infinite ease backwards;
-      background: $text-color;
-      border-radius: 100%;
-      height: 2rem;
-      width: 2rem;
-    }
-    .dot:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .dot:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-    .dot:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-    .dot:nth-child(5) {
-      animation-delay: 0.5s;
-    }
-  }
-}
-@keyframes scaling-dots {
-  0%,
-  100% {
-    transform: scale(0);
-  }
-  40%,
-  60% {
-    transform: scale(1);
   }
 }

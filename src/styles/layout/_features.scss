@@ -8,8 +8,10 @@
     }
   }
   &__paragraph {
+    max-width: 80vw;
     margin: 1.5rem auto;
   }
+
   &__content {
   }
   @media screen and (min-width: 767px) {
@@ -17,12 +19,18 @@
     display: grid;
     @include mainGridTemplate;
     &__intro {
-      grid-column: col-start 3 / col-start 9;
+      grid-column: center-start / center-end;
     }
+
     &__content {
       grid-column: all-start/center-end;
       display: grid;
       @include mainGridTemplate;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    &__paragraph {
+      max-width: 50vw;
     }
   }
 }

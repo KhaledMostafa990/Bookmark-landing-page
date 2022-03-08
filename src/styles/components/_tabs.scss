@@ -11,6 +11,8 @@
     color: $grayish-blue;
     width: 100%;
     transition: all 0.15s;
+    font-size: 1.6rem;
+    // For the tabs underline
     &:first-child::before,
     &::after {
       content: "";
@@ -24,6 +26,7 @@
     &:first-child::before {
       top: 0;
     }
+    // Hover & Active States (class handled by js)
     &:hover {
       color: rgba($soft-red, 0.85);
       &::after {
@@ -36,19 +39,21 @@
     &.active:hover::after {
       background-color: rgba($color: $grayish-blue, $alpha: 0.4);
     }
+    // Transform the indcator on the active tab
     &:nth-child(1).active ~ span {
-      transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
+      transform: translateY(5rem * 1 - 0.5rem) translateX(-50%);
       animation: traversal-1 0.6s ease-in-out 0s 1 normal forwards;
     }
     &:nth-child(2).active ~ span {
-      transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
+      transform: translateY(5rem * 2 - 0.64rem) translateX(-50%);
       animation: traversal-2 0.6s ease-in-out 0s 1 normal forwards;
     }
     &:nth-child(3).active ~ span {
-      transform: translateY(5rem * 3) translateX(-50%);
+      transform: translateY(5rem * 3 - 0.75rem) translateX(-50%);
       animation: traversal-3 0.6s ease-in-out 0s 1 normal forwards;
     }
   }
+  // The indicator for active tabs
   &__indicator {
     position: absolute;
     left: 50%;
@@ -58,43 +63,9 @@
     transition: all 0.44s;
     background-color: rgba($color: $soft-red, $alpha: 0.9);
   }
-  @keyframes traversal-1 {
-    0% {
-      width: 0%;
-      opacity: 0;
-    }
-    100% {
-      width: 50%;
-      opacity: 1;
-      transform: translateY(5rem * 1 - 0.4rem) translateX(-50%);
-    }
-  }
-  @keyframes traversal-2 {
-    0% {
-      width: 0%;
-      opacity: 0;
-    }
-    100% {
-      width: 50%;
-      opacity: 1;
-      transform: translateY(5rem * 2 - 0.2rem) translateX(-50%);
-    }
-  }
-  @keyframes traversal-3 {
-    0% {
-      width: 0%;
-      opacity: 0;
-    }
-    100% {
-      width: 50%;
-      opacity: 1;
-      transform: translateY(5rem * 3) translateX(-50%);
-    }
-  }
 }
 .tabs-content {
   &--body {
-    // Not Active
     display: none;
     visibility: hidden;
     &__image-wrapper {
@@ -114,20 +85,18 @@
         border-bottom-right-radius: 18rem;
       }
     }
-    img {
-      height: clamp(34.1rem, 37rem, 41rem);
-    }
+
     &:nth-child(1) img {
-      // height: min(100%, 34.6rem);
       width: min(100%, 53.6rem);
+      height: min(100%, 34.6rem);
     }
     &:nth-child(2) img {
-      // height: min(100%, 41.6rem);
       width: min(100%, 47.8rem);
+      height: min(100%, 38rem);
     }
     &:nth-child(3) img {
-      // height: min(100%, 38rem);
       width: min(100%, 44rem);
+      height: min(100%, 44.66rem);
     }
     &__text {
       &--heading {
@@ -142,12 +111,14 @@
         margin: 1.5rem auto;
       }
     }
+    // Active
     &.active {
       display: block;
       visibility: visible;
     }
   }
 }
+// ========= ====   ==== =========
 @media screen and (min-width: 768px) {
   .tabs-navigation {
     grid-column: col-start 2 / col-end 10;
@@ -188,7 +159,7 @@
         @include mainGridTemplate;
       }
       &__image-wrapper {
-        grid-column: all-start/col-end 7;
+        grid-column: all-start/col-start 7;
       }
       &__text {
         grid-column: col-start 8 / -1;
@@ -196,6 +167,7 @@
         position: relative;
         top: 22%;
         &--paragraph {
+          font-size: 1.8rem;
           margin-bottom: 2rem;
         }
         &--btn {
