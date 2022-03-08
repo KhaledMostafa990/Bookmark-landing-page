@@ -177,7 +177,17 @@
       }
     }
   }
-
+  .attribution {
+    background-color: $soft-blue;
+    text-align: center;
+    grid-column: all-start / all-end;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    a:link,
+    a:visited {
+      color: $text-color;
+    }
+  }
   @media screen and (min-width: 768px) {
     &__contact-us {
       &--form {
